@@ -12,7 +12,7 @@ import OSLog
 public final class PokemonServiceImpl: PokemonService {
     private let baseService: BaseService
 
-    public init(baseService: BaseService) {
+    public init(baseService: BaseService = BaseServiceImpl()) {
         self.baseService = baseService
     }
 

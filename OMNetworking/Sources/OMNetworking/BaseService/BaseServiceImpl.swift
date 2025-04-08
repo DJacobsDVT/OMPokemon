@@ -18,4 +18,6 @@ public final class BaseServiceImpl: BaseService {
     }()
 
     public var decoder: JSONDecoder { _decoder }
+
+    public init() {}
 }
