@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct PokemonItem: Codable, Sendable, Identifiable {
+public struct PokemonItem: Codable, Sendable, Identifiable {
     public let id: Int
     public let name: String
     public let sprites: Sprites
@@ -28,7 +28,7 @@ struct PokemonItem: Codable, Sendable, Identifiable {
 }
 
 // MARK: - Ability
-struct Ability: Codable, Sendable {
+public struct Ability: Codable, Sendable {
     let ability: NamedItem
     let isHidden: Bool
     let slot: Int
@@ -42,7 +42,7 @@ struct Ability: Codable, Sendable {
 
 
 // MARK: - Sprites
-struct Sprites: Codable, Sendable {
+public struct Sprites: Codable, Sendable {
     let frontDefault: String
 
     enum CodingKeys: String, CodingKey {
@@ -52,7 +52,7 @@ struct Sprites: Codable, Sendable {
 
 
 // MARK: - Stat
-struct Stat: Codable, Sendable {
+public struct Stat: Codable, Sendable {
     let baseStat, effort: Int
     let stat: NamedItem
 
@@ -63,7 +63,7 @@ struct Stat: Codable, Sendable {
 }
 
 // MARK: - TypeElement
-struct TypeElement: Codable, Sendable {
+public struct TypeElement: Codable, Sendable {
     let slot: Int
     let type: NamedItem
 }
