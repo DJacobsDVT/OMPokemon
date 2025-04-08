@@ -10,20 +10,95 @@ import OMModels
 
 struct PokemonDetailView: View {
 
-    let pokemon: NamedItem
+    @StateObject var viewModel: PokemonDetailViewModel
+
+    init(pokemon: NamedItem) {
+        self._viewModel = StateObject(wrappedValue: PokemonDetailViewModel(pokemon: pokemon))
+    }
 
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+            switch viewModel.state {
+            case .loading:
+                LoadingView()
+            case .error(let error):
+                GenericErrorView(errorMessage: error)
+            case .idle:
+                if let dto = viewModel.pokemonDTO {
+                    List {
+                        PokemonDetailHeaderView(title: dto.name, imageUrl: dto.spriteURL)
+                        PokemonDetailBodyView(sections: dto.sections)
+                    }
+                } else {
+                    GenericErrorView(errorMessage: String(localized: "something_went_wrong"))
+                }
+            }
         }
-        .padding()
+        .onAppear(perform: {
+            Task {
+                await viewModel.loadPokemonDetail()
+            }
+        })
+    }
+}
+
+fileprivate struct PokemonDetailHeaderView: View {
+
+    let title: String
+    let imageUrl: URL?
+
+    var body: some View {
+        HStack {
+            Spacer()
+            VStack(alignment: .center) {
+                AsyncImage(url: imageUrl) { image in
+                    image.resizable()
+                } placeholder: {
+                    ProgressView()
+                }
+                .frame(width: 150, height: 150)
+                Text(title)
+                    .font(.system(.largeTitle, design: .default, weight: .bold))
+            }
+            Spacer()
+        }
+    }
+}
+
+fileprivate struct PokemonDetailBodyView: View {
+
+    let sections: [String: [ListItem]]
+
+    var body: some View {
+        ForEach(Array(sections.keys).sorted(by: >), id: \.self) { (section: String) in
+            Section(header: Text(section)) {
+                PokemonDetailRowItems(items: sections[section] ?? [])
+            }
+        }
+    }
+}
+
+fileprivate struct PokemonDetailRowItems: View {
+
+    let items: [ListItem]
+
+    var body: some View {
+        ForEach(items) { (listItem: ListItem) in
+            HStack {
+                Text(listItem.label)
+                Spacer()
+                Text(listItem.value ?? "")
+                    .foregroundStyle(.gray)
+                    .opacity(listItem.value == nil ? 0 : 1)
+            }
+        }
+
     }
 }
 
 #Preview {
-    PokemonDetailView(pokemon: NamedItem(name: "Pikachu", url: "https://pokeapi.co/api/v2/pokemon/25"))
+    NavigationStack {
+        PokemonDetailView(pokemon: NamedItem(name: "Pikachu", url: "https://pokeapi.co/api/v2/pokemon/25"))
+    }
 }
 

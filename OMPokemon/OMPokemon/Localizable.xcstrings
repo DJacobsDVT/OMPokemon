@@ -1,6 +1,17 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "attack" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Attack"
+          }
+        }
+      }
+    },
     "back" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -8,6 +19,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Back"
+          }
+        }
+      }
+    },
+    "defense" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Defense"
           }
         }
       }
@@ -23,6 +45,28 @@
         }
       }
     },
+    "health_points" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Health Points"
+          }
+        }
+      }
+    },
+    "height" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Height"
+          }
+        }
+      }
+    },
     "loading" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -30,6 +74,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Loading…"
+          }
+        }
+      }
+    },
+    "measurements" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Measurements"
           }
         }
       }
@@ -63,6 +118,72 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Something went wrong, please try again later…"
+          }
+        }
+      }
+    },
+    "special_attack" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Special Attack"
+          }
+        }
+      }
+    },
+    "special_defense" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Special Defense"
+          }
+        }
+      }
+    },
+    "speed" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Speed"
+          }
+        }
+      }
+    },
+    "statistics" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Statistics"
+          }
+        }
+      }
+    },
+    "type" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Type"
+          }
+        }
+      }
+    },
+    "weight" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Weight"
           }
         }
       }

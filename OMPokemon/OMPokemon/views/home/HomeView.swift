@@ -27,10 +27,7 @@ struct HomeView: View {
             case .loading:
                 LoadingView()
             case .error(let error):
-                VStack {
-                    Text(String(localized: "generic_error_title"))
-                    Text(error)
-                }
+                GenericErrorView(errorMessage: error)
             case .idle:
                 List {
                     ForEach(pokemons, id: \.id) { pokemon in

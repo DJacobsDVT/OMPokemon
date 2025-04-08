@@ -16,12 +16,12 @@ public final class PokemonServiceImpl: PokemonService {
         self.baseService = baseService
     }
 
-    public func fetchPokemon(named name: String) async throws -> PokemonItem {
+    public func fetchPokemon(named name: String) async throws -> PokemonItem? {
         let path = "pokemon/\(name.trimmingCharacters(in: .whitespacesAndNewlines))"
         return try await baseService.get(path: path, type: PokemonItem.self)
     }
 
-    public func fetchPokemonList(limit: Int) async throws -> [NamedItem] {
+    public func fetchPokemonList(limit: Int) async throws -> [NamedItem]? {
         var components = URLComponents()
         components.path = "pokemon"
         components.queryItems = [

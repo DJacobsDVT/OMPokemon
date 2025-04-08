@@ -15,6 +15,7 @@ public struct PokemonItem: Codable, Sendable, Identifiable, Equatable {
     public let stats: [Stat]
     public let types: [TypeElement]
     public let weight: Int
+    public let height: Double
     public let abilities: [Ability]
 
     enum CodingKeys: String, CodingKey {
@@ -24,6 +25,7 @@ public struct PokemonItem: Codable, Sendable, Identifiable, Equatable {
         case stats
         case types
         case weight
+        case height
         case abilities
     }
 
@@ -34,9 +36,9 @@ public struct PokemonItem: Codable, Sendable, Identifiable, Equatable {
 
 // MARK: - Ability
 public struct Ability: Codable, Sendable {
-    let ability: NamedItem
-    let isHidden: Bool
-    let slot: Int
+    public let ability: NamedItem
+    public let isHidden: Bool
+    public let slot: Int
 
     enum CodingKeys: String, CodingKey {
         case ability
@@ -45,10 +47,9 @@ public struct Ability: Codable, Sendable {
     }
 }
 
-
 // MARK: - Sprites
 public struct Sprites: Codable, Sendable {
-    let frontDefault: String
+    public let frontDefault: String
 
     enum CodingKeys: String, CodingKey {
         case frontDefault = "front_default"
@@ -58,8 +59,8 @@ public struct Sprites: Codable, Sendable {
 
 // MARK: - Stat
 public struct Stat: Codable, Sendable {
-    let baseStat, effort: Int
-    let stat: NamedItem
+    public let baseStat, effort: Int
+    public let stat: StatDetail
 
     enum CodingKeys: String, CodingKey {
         case baseStat = "base_stat"
@@ -67,8 +68,41 @@ public struct Stat: Codable, Sendable {
     }
 }
 
+public enum StatName: String, Codable, Sendable {
+    case hp = "hp"
+    case attack = "attack"
+    case defense = "defense"
+    case specialAttack = "special-attack"
+    case specialDefense = "special-defense"
+    case speed = "speed"
+
+    public var userFriendlyName: String {
+        switch self {
+        case .hp:
+            "Health Points"
+        case .attack:
+            "Attack"
+        case .defense:
+            "Defense"
+        case .specialAttack:
+            "Special Attack"
+        case .specialDefense:
+            "Special Defense"
+        case .speed:
+            "Speed"
+        default:
+            "Unknown"
+        }
+    }
+}
+
+public struct StatDetail: Codable, Sendable {
+    public let name: StatName
+    public let url: String
+}
+
 // MARK: - TypeElement
 public struct TypeElement: Codable, Sendable {
-    let slot: Int
-    let type: NamedItem
+    public let slot: Int
+    public let type: NamedItem
 }
