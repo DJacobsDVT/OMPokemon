@@ -23,7 +23,11 @@ public final class HomeViewModel: BaseObservable {
     func loadPokemon() async {
         state = .loading
         do {
-            self.pokemons = try await pokemonService.fetchPokemonList(limit: 100)
+            guard let result = try await pokemonService.fetchPokemonList(limit: 100) else {
+                state = ViewState.error(String(localized: "something_went_wrong"))
+                return
+            }
+            self.pokemons = result
             state = .idle
         } catch {
             state = ViewState.error(String(localized: "something_went_wrong"))

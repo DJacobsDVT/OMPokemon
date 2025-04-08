@@ -29,7 +29,7 @@ final class Router: ObservableObject {
 enum Destination: Hashable {
     case landing
     case home
-    case viewPokemon(String)
+    case viewPokemon(NamedItem)
 
     @ViewBuilder var routeView: some View {
         switch self {
@@ -37,8 +37,8 @@ enum Destination: Hashable {
             LandingView().navigationBarBackButtonHidden(true)
         case .home:
             HomeView().navigationBarBackButtonHidden(true)
-        case .viewPokemon(let pokemonName):
-            HomeView()
+        case .viewPokemon(let pokemon):
+            PokemonDetailView(pokemon: pokemon)
         }
     }
 }

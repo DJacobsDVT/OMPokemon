@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct GenericErrorView: View {
+
+    let errorMessage: String
+
     var body: some View {
         VStack(spacing: 10.0) {
             Spacer()
@@ -19,7 +22,7 @@ struct GenericErrorView: View {
                 .padding([.bottom])
             Text(String(localized: "generic_error_title"))
                 .font(.system(.headline, design: .default))
-            Text(String(localized: "something_went_wrong"))
+            Text(errorMessage)
             Spacer()
         }
         .padding()
@@ -27,5 +30,5 @@ struct GenericErrorView: View {
 }
 
 #Preview {
-    GenericErrorView()
+    GenericErrorView(errorMessage: String(localized: "something_went_wrong"))
 }

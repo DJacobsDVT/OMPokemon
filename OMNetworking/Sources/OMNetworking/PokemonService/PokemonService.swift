@@ -9,12 +9,12 @@ import Foundation
 import OMModels
 
 public protocol PokemonService {
-    func fetchPokemonList(limit: Int) async throws -> [NamedItem]
-    func fetchPokemon(named name: String) async throws -> PokemonItem
+    func fetchPokemonList(limit: Int) async throws -> [NamedItem]?
+    func fetchPokemon(named name: String) async throws -> PokemonItem?
 }
 
 extension PokemonService {
-    public func fetchPokemonList(limit: Int = 100) async throws -> [NamedItem] {
+    public func fetchPokemonList(limit: Int = 100) async throws -> [NamedItem]? {
         try await fetchPokemonList(limit: limit)
     }
 }
