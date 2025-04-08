@@ -8,16 +8,13 @@
 import SwiftUI
 import OMNetworking
 import OMModels
+import Factory
 
 public final class HomeViewModel: BaseObservable {
     @MainActor @Published var state: ViewState = .idle
     @MainActor @Published var pokemons: [NamedItem] = []
 
-    private let pokemonService: PokemonService
-
-    init(pokemonService: PokemonService = PokemonServiceImpl()) {
-        self.pokemonService = pokemonService
-    }
+    @Injected(\.pokemonService) private var pokemonService: PokemonService
 
     @MainActor
     func loadPokemon() async {

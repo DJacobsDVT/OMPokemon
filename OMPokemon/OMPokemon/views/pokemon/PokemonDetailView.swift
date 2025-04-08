@@ -7,6 +7,7 @@
 
 import SwiftUI
 import OMModels
+import Factory
 
 struct PokemonDetailView: View {
 
@@ -92,11 +93,11 @@ fileprivate struct PokemonDetailRowItems: View {
                     .opacity(listItem.value == nil ? 0 : 1)
             }
         }
-
     }
 }
 
 #Preview {
+    let _ = Container.shared.pokemonService.register { PreviewPokemonService() }
     NavigationStack {
         PokemonDetailView(pokemon: NamedItem(name: "Pikachu", url: "https://pokeapi.co/api/v2/pokemon/25"))
     }

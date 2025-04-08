@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E948E3392DA5AFF9002840A0 /* Factory in Frameworks */ = {isa = PBXBuildFile; productRef = E948E3382DA5AFF9002840A0 /* Factory */; };
 		E98C001B2DA527F7003D664A /* OMNetworking in Frameworks */ = {isa = PBXBuildFile; productRef = E98C001A2DA527F7003D664A /* OMNetworking */; };
 		E98C001E2DA52AAA003D664A /* OMModels in Frameworks */ = {isa = PBXBuildFile; productRef = E98C001D2DA52AAA003D664A /* OMModels */; };
 /* End PBXBuildFile section */
@@ -64,6 +65,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E948E3392DA5AFF9002840A0 /* Factory in Frameworks */,
 				E98C001E2DA52AAA003D664A /* OMModels in Frameworks */,
 				E98C001B2DA527F7003D664A /* OMNetworking in Frameworks */,
 			);
@@ -144,6 +146,7 @@
 			packageProductDependencies = (
 				E98C001A2DA527F7003D664A /* OMNetworking */,
 				E98C001D2DA52AAA003D664A /* OMModels */,
+				E948E3382DA5AFF9002840A0 /* Factory */,
 			);
 			productName = OMPokemon;
 			productReference = E98CFFEC2DA5263F003D664A /* OMPokemon.app */;
@@ -207,6 +210,7 @@
 			packageReferences = (
 				E98C00192DA527F7003D664A /* XCLocalSwiftPackageReference "../OMNetworking" */,
 				E98C001C2DA52AAA003D664A /* XCLocalSwiftPackageReference "../OMModels" */,
+				E948E3372DA5AFF9002840A0 /* XCRemoteSwiftPackageReference "Factory" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = E98CFFED2DA5263F003D664A /* Products */;
@@ -587,7 +591,23 @@
 		};
 /* End XCLocalSwiftPackageReference section */
 
+/* Begin XCRemoteSwiftPackageReference section */
+		E948E3372DA5AFF9002840A0 /* XCRemoteSwiftPackageReference "Factory" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hmlongco/Factory";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.4.3;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
 /* Begin XCSwiftPackageProductDependency section */
+		E948E3382DA5AFF9002840A0 /* Factory */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E948E3372DA5AFF9002840A0 /* XCRemoteSwiftPackageReference "Factory" */;
+			productName = Factory;
+		};
 		E98C001A2DA527F7003D664A /* OMNetworking */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = OMNetworking;

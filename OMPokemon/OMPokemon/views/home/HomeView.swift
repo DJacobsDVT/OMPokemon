@@ -8,6 +8,7 @@
 import SwiftUI
 import OMModels
 import OMNetworking
+import Factory
 
 struct HomeView: View {
 
@@ -58,6 +59,7 @@ extension HomeView {
 }
 
 #Preview {
+    let _ = Container.shared.pokemonService.register { PreviewPokemonService() }
     NavigationStack {
         HomeView()
     }
