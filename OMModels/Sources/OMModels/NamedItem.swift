@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct NamedItem: Codable, Sendable, Identifiable {
+public struct NamedItem: Codable, Sendable, Identifiable, Hashable {
     public let id: String = UUID().uuidString
     public let name: String
     public let url: String

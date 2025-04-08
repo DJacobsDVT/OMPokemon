@@ -7,7 +7,8 @@
 
 import Foundation
 
-public struct PokemonItem: Codable, Sendable, Identifiable {
+public struct PokemonItem: Codable, Sendable, Identifiable, Equatable {
+
     public let id: Int
     public let name: String
     public let sprites: Sprites
@@ -24,6 +25,10 @@ public struct PokemonItem: Codable, Sendable, Identifiable {
         case types
         case weight
         case abilities
+    }
+
+    public static func == (lhs: PokemonItem, rhs: PokemonItem) -> Bool {
+        lhs.id == rhs.id
     }
 }
 
