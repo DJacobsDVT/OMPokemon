@@ -9,9 +9,18 @@ import SwiftUI
 
 @main
 struct OMPokemonApp: App {
+
+    @ObservedObject var router = Router()
+
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            NavigationStack(path: $router.navPath) {
+                LandingView()
+                    .navigationDestination(for: Destination.self) { destination in
+                        destination.routeView
+                    }
+            }
+            .environmentObject(router)
         }
     }
 }
