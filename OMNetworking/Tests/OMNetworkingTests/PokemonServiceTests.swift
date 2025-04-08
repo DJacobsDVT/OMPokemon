@@ -1,23 +1,27 @@
 import Testing
 import OMModels
 import Foundation
+import Factory
 @testable import OMNetworking
 
-@Suite("Pokemon Service Tests")
+@Suite("Pokemon Service Tests", .serialized)
 class PokemonServiceTests {
 
     @Test func testThatFetchPokemonSucceeds() async throws {
-        let implementationUnderTest: PokemonService = PokemonServiceImpl(baseService: BaseServiceImpl())
+        Container.shared.baseService.register { BaseServiceImpl() }
+
+        let implementationUnderTest: PokemonService = PokemonServiceImpl()
 
         await #expect(throws: Never.self) {
             let result = try await implementationUnderTest.fetchPokemonList(limit: 5)
-            #expect(result.count > 0)
+            #expect(result?.count ?? 0 > 0)
         }
     }
 
     @Test func testThatFetchPokemonCanFail() async throws {
         let errorToThrow = NetworkError.badRequest
-        let implementationUnderTest: PokemonService = PokemonServiceImpl(baseService: FailingBaseService(errorToThrow: errorToThrow))
+        Container.shared.baseService.register { FailingBaseService(errorToThrow: errorToThrow) }
+        let implementationUnderTest: PokemonService = PokemonServiceImpl()
 
         await #expect(throws: NetworkError.self) {
             _ = try await implementationUnderTest.fetchPokemonList(limit: 5)
@@ -25,7 +29,8 @@ class PokemonServiceTests {
     }
 
     @Test func testThatFetchSinglePokemonSucceeds() async throws {
-        let implementationUnderTest: PokemonService = PokemonServiceImpl(baseService: BaseServiceImpl())
+        Container.shared.baseService.register { BaseServiceImpl() }
+        let implementationUnderTest: PokemonService = PokemonServiceImpl()
 
         await #expect(throws: Never.self) {
             let result = try await implementationUnderTest.fetchPokemon(named: "Pikachu")
@@ -35,10 +40,15 @@ class PokemonServiceTests {
 
     @Test func testThatFetchSinglePokemonCanFail() async throws {
         let errorToThrow = NetworkError.badRequest
-        let implementationUnderTest: PokemonService = PokemonServiceImpl(baseService: FailingBaseService(errorToThrow: errorToThrow))
+        Container.shared.baseService.register { FailingBaseService(errorToThrow: errorToThrow) }
+        let implementationUnderTest: PokemonService = PokemonServiceImpl()
 
         await #expect(throws: NetworkError.self) {
             _ = try await implementationUnderTest.fetchPokemon(named: "Pikachu")
         }
+    }
+
+    deinit {
+        Container.shared.reset()
     }
 }

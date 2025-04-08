@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import Factory
+import OMNetworking
 
 @main
 struct OMPokemonApp: App {
@@ -21,6 +23,14 @@ struct OMPokemonApp: App {
                     }
             }
             .environmentObject(router)
+        }
+    }
+}
+
+extension Container {
+    var pokemonService: Factory<PokemonService> {
+        Factory(self) {
+            PokemonServiceImpl()
         }
     }
 }
