@@ -12,10 +12,7 @@ public final class BaseServiceImpl: BaseService {
         URL(string: "https://pokeapi.co/api/v2/")!
     }
 
-    lazy var _decoder: JSONDecoder = {
-        let decoder = JSONDecoder()
-        return decoder
-    }()
+    let _decoder: JSONDecoder = JSONDecoder()
 
     public var decoder: JSONDecoder { _decoder }
 

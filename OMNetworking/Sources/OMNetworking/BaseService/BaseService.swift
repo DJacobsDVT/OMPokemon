@@ -7,7 +7,7 @@
 import Foundation
 import os
 
-public protocol BaseService {
+public protocol BaseService: Sendable {
     var baseUrl: URL { get }
     var decoder: JSONDecoder { get }
     func get<T: Codable>(path: String, type: T.Type) async throws -> T

@@ -42,7 +42,7 @@ final class PokemonDetailViewModel: BaseObservable {
 
     private func createPokemonDTO(from response: PokemonItem) -> PokemonDetailDTO {
         var sections: [String: [ListItem]] = [:]
-        sections[String(localized: "type")] = [ListItem(label: response.types.first?.type.name.capitalized ?? "")]
+        sections[String(localized: "type")] = [ListItem(label: response.types.map { $0.type.name.capitalized }.joined(separator: ", "))]
         sections[String(localized: "statistics")] = response.stats.map { stat in
             ListItem(label: stat.stat.name.userFriendlyName, value: "\(stat.baseStat)")
         }

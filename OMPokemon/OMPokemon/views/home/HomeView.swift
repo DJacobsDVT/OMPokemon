@@ -35,7 +35,17 @@ struct HomeView: View {
                         NavigationLink {
                             PokemonDetailView(pokemon: pokemon)
                         } label: {
-                            Text(pokemon.name.capitalized)
+                            HStack {
+                                Image("pokeball")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 30, height: 30)
+                                Text(pokemon.name.capitalized)
+                            }
+                        }.onAppear {
+                            Task {
+
+                            }
                         }
                     }
                 }
