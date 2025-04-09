@@ -26,10 +26,9 @@ SwiftTesting
 
 ## Architecture
 
-MVVM For UI
-Factory for Dependency Injection (https://github.com/hmlongco/Factory)
-Swift Package Manager For Dependency Management
-
+- MVVM For UI
+- Factory for Dependency Injection (https://github.com/hmlongco/Factory)
+- Swift Package Manager For Dependency Management
 
 ## Future Enchancements
 
