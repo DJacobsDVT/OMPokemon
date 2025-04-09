@@ -10,16 +10,27 @@ import SwiftUI
 struct LandingView: View {
 
     @EnvironmentObject var router: Router
+    @State private var opacity: Double = 0.0
 
     var body: some View {
         ZStack {
+            HStack(spacing: 0) {
+                Color.red
+                Color.white
+                Color.white
+                Color.red
+            }
             Image("pokeball")
                 .resizable()
                 .scaledToFit()
                 .frame(width: 150, height: 150)
-                .foregroundColor(.blue)
+                .opacity(opacity)
         }
+        .ignoresSafeArea()
         .onAppear {
+            withAnimation(.easeIn(duration: 1)) {
+              opacity = opacity == 0.0 ? 1.0 : 0.0
+            }
             Task {
                 try await performAfterDelay()
             }
