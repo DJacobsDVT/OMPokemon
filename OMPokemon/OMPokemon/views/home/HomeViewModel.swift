@@ -8,6 +8,7 @@
 import SwiftUI
 import OMNetworking
 import OMModels
+import OSLog
 
 public final class HomeViewModel: BaseObservable {
     @MainActor @Published var state: ViewState = .idle
@@ -30,6 +31,7 @@ public final class HomeViewModel: BaseObservable {
             self.pokemons = result
             state = .idle
         } catch {
+            Logger.app.error("Failed to load pokemon detail: \(error)")
             state = ViewState.error(String(localized: "something_went_wrong"))
         }
     }
