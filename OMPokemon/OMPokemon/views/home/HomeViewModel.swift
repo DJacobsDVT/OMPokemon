@@ -11,13 +11,12 @@ import OMModels
 import Factory
 import OSLog
 
-public final class HomeViewModel: BaseObservable {
-    @MainActor @Published var state: ViewState = .idle
-    @MainActor @Published var pokemons: [NamedItem] = []
+final class HomeViewModel: BaseObservable {
+    @Published var state: ViewState = .idle
+    @Published var pokemons: [NamedItem] = []
 
     @Injected(\.pokemonService) private var pokemonService: PokemonService
 
-    @MainActor
     func loadPokemon() async {
         state = .loading
         do {

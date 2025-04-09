@@ -12,7 +12,7 @@ import Factory
 
 struct HomeView: View {
 
-    @StateObject var viewModel: HomeViewModel = HomeViewModel()
+    @StateObject private var viewModel: HomeViewModel = HomeViewModel()
     @State private var searchTerm = ""
     var pokemons: [NamedItem] {
         if !searchTerm.isEmpty {
