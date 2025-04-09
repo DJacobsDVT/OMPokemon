@@ -12,7 +12,7 @@ import Factory
 import OSLog
 
 final class PokemonDetailViewModel: BaseObservable {
-    @Published var state: ViewState = .idle
+    @MainActor @Published var state: ViewState = .idle
     private var pokemonDetail: PokemonItem?
     private(set) var pokemonDTO: PokemonDetailDTO?
 
@@ -23,6 +23,7 @@ final class PokemonDetailViewModel: BaseObservable {
         self.pokemon = pokemon
     }
 
+    @MainActor
     func loadPokemonDetail() async {
         state = .loading
         do {
