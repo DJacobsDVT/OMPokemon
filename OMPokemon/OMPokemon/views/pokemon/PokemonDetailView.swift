@@ -23,7 +23,9 @@ struct PokemonDetailView: View {
             case .loading:
                 LoadingView()
             case .error(let error):
-                GenericErrorView(errorMessage: error)
+                GenericErrorView(errorMessage: error) {
+                    loadView()
+                }
             case .loaded:
                 if let dto = viewModel.pokemonDTO {
                     List {
@@ -38,10 +40,14 @@ struct PokemonDetailView: View {
             }
         }
         .onAppear(perform: {
-            Task {
-                await viewModel.loadPokemonDetail()
-            }
+            loadView()
         })
+    }
+
+    private func loadView() {
+        Task {
+            await viewModel.loadPokemonDetail()
+        }
     }
 }
 

@@ -28,7 +28,9 @@ struct HomeView: View {
             case .loading:
                 LoadingView()
             case .error(let error):
-                GenericErrorView(errorMessage: error)
+                GenericErrorView(errorMessage: error) {
+                    loadView()
+                }
             case .loaded:
                 List {
                     ForEach(pokemons, id: \.id) { pokemon in
@@ -57,10 +59,14 @@ struct HomeView: View {
         .navigationTitle("pokedex")
         .onAppear(perform: {
             searchTerm = ""
-            Task {
-                await viewModel.loadPokemon()
-            }
+            loadView()
         })
+    }
+
+    private func loadView() {
+        Task {
+            await viewModel.loadPokemon()
+        }
     }
 }
 
