@@ -10,6 +10,12 @@ import SwiftUI
 struct GenericErrorView: View {
 
     let errorMessage: String
+    let retryAction: (() -> Void)?
+
+    init(errorMessage: String, retryAction: (() -> Void)? = nil) {
+        self.errorMessage = errorMessage
+        self.retryAction = retryAction
+    }
 
     var body: some View {
         VStack(spacing: 10.0) {
@@ -23,6 +29,11 @@ struct GenericErrorView: View {
             Text("generic_error_title")
                 .font(.system(.headline, design: .default))
             Text(errorMessage)
+            if let retryAction {
+                Button("retry") {
+                    retryAction()
+                }
+            }
             Spacer()
         }
         .padding()

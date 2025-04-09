@@ -31,14 +31,14 @@ final class PokemonDetailViewModel: BaseObservable {
         state = .loading
         do {
             guard let result = try await pokemonService.fetchPokemon(named: pokemon.name) else {
-                state = ViewState.error("something_went_wrong")
+                state = ViewState.error(String(localized: "something_went_wrong"))
                 return
             }
             self.pokemonDetail = result
             state = .loaded
         } catch {
             Logger.app.error("Failed to load pokemon detail: \(error)")
-            state = ViewState.error("something_went_wrong")
+            state = ViewState.error(String(localized: "something_went_wrong"))
         }
     }
 

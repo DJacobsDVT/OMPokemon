@@ -111,6 +111,16 @@
         }
       }
     },
+    "retry" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Retry"
+          }
+        }
+      }
+    },
     "something_went_wrong" : {
       "extractionState" : "manual",
       "localizations" : {
