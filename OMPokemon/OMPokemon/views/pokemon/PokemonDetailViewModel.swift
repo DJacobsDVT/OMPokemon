@@ -8,6 +8,7 @@
 import SwiftUI
 import OMNetworking
 import OMModels
+import Factory
 import OSLog
 
 public final class PokemonDetailViewModel: BaseObservable {
@@ -15,12 +16,11 @@ public final class PokemonDetailViewModel: BaseObservable {
     private var pokemonDetail: PokemonItem?
     private(set) var pokemonDTO: PokemonDetailDTO?
 
-    private let pokemonService: PokemonService
+    @Injected(\.pokemonService) private var pokemonService: PokemonService
     private let pokemon: NamedItem
 
-    init(pokemon: NamedItem, pokemonService: PokemonService = PokemonServiceImpl()) {
+    init(pokemon: NamedItem) {
         self.pokemon = pokemon
-        self.pokemonService = pokemonService
     }
 
     @MainActor

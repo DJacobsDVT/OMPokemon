@@ -7,14 +7,14 @@
 
 import Foundation
 import OMModels
+import Factory
 import OSLog
 
 public final class PokemonServiceImpl: PokemonService {
-    private let baseService: BaseService
 
-    public init(baseService: BaseService = BaseServiceImpl()) {
-        self.baseService = baseService
-    }
+    @Injected(\.baseService) private var baseService: BaseService
+
+    public init() {}
 
     public func fetchPokemon(named name: String) async throws -> PokemonItem? {
         let path = "pokemon/\(name.trimmingCharacters(in: .whitespacesAndNewlines))"

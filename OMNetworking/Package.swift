@@ -12,16 +12,17 @@ let package = Package(
             name: "OMNetworking",
             targets: ["OMNetworking"]),
     ],
-    dependencies: [.package(path: "../OMModels")],
+    dependencies: [.package(path: "../OMModels"),
+                   .package(url: "https://github.com/hmlongco/Factory", from: Version(stringLiteral: "2.4.5"))],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
         // Targets can depend on other targets in this package and products from dependencies.
         .target(
             name: "OMNetworking",
-            dependencies: ["OMModels"]),
+            dependencies: ["OMModels", "Factory"]),
         .testTarget(
             name: "OMNetworkingTests",
-            dependencies: ["OMNetworking", "OMModels"]
+            dependencies: ["OMNetworking", "OMModels", "Factory"]
         ),
     ]
 )
