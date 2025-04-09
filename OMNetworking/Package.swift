@@ -22,7 +22,13 @@ let package = Package(
             dependencies: ["OMModels", "Factory"]),
         .testTarget(
             name: "OMNetworkingTests",
-            dependencies: ["OMNetworking", "OMModels", "Factory"]
+            dependencies: ["OMNetworking", "OMModels", "Factory"],
+            resources: [
+                .copy("../OMNetworkingTests/mock_json/pokemon_list.json"),
+                .copy("../OMNetworkingTests/mock_json/pokemon_ivysaur.json"),
+                .copy("../OMNetworkingTests/mock_json/pokemon_bulbasaur.json"),
+                .copy("../OMNetworkingTests/mock_json/pokemon_venusaur.json"),
+            ]
         ),
     ]
 )

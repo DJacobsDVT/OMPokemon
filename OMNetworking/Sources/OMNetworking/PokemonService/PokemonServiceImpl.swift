@@ -10,15 +10,36 @@ import OMModels
 import Factory
 import OSLog
 
-public final class PokemonServiceImpl: PokemonService {
+public final actor PokemonServiceImpl: PokemonService {
 
     @Injected(\.baseService) private var baseService: BaseService
+    private let pokemonCache: NSCache<NSString, PokemonCacheEntryObject> = NSCache()
 
     public init() {}
 
     public func fetchPokemon(named name: String) async throws -> PokemonItem? {
-        let path = "pokemon/\(name.trimmingCharacters(in: .whitespacesAndNewlines))"
-        return try await baseService.get(path: path, type: PokemonItem.self)
+        if let cached = pokemonCache[name] {
+            switch cached {
+            case .ready(let pokemonItem):
+                return pokemonItem
+            case .inProgress(let task):
+                return try await task.value
+            }
+        }
+
+        let task = Task<PokemonItem?, Error> {
+            let path = "pokemon/\(name.trimmingCharacters(in: .whitespacesAndNewlines))"
+            return try await baseService.get(path: path, type: PokemonItem.self)
+        }
+        pokemonCache[name] = .inProgress(task)
+        do {
+            let item = try await task.value
+            pokemonCache[name] = .ready(item)
+            return item
+        } catch {
+            pokemonCache[name] = nil
+            throw error
+        }
     }
 
     public func fetchPokemonList(limit: Int) async throws -> [NamedItem]? {

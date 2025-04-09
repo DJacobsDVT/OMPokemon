@@ -5,7 +5,7 @@
 //  Created by Daniel Jacobs on 2025/04/08.
 //
 
-public enum NetworkError: Error, CustomStringConvertible {
+public enum NetworkError: Error, CustomStringConvertible, Sendable {
     case badURL
     case badResponse
     case badRequest

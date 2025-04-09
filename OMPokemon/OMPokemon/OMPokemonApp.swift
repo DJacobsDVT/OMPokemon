@@ -31,6 +31,6 @@ extension Container {
     var pokemonService: Factory<PokemonService> {
         Factory(self) {
             PokemonServiceImpl()
-        }
+        }.singleton
     }
 }

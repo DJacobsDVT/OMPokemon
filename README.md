@@ -37,4 +37,6 @@ Swift Package Manager For Dependency Management
 - Introduce a UI package for reusable views
 - Introduce a Util package for reusable utility logic
 - Add xcconfig file for configuration variables
+- Add infinite scrolling using paging for HomeView
+- Split out network calls into Use Cases
 

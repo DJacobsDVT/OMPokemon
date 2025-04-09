@@ -89,7 +89,7 @@ fileprivate struct PokemonDetailRowItems: View {
                 Text(listItem.label)
                 Spacer()
                 Text(listItem.value ?? "")
-                    .foregroundStyle(.gray)
+                    .foregroundStyle(.accent)
                     .opacity(listItem.value == nil ? 0 : 1)
             }
         }
