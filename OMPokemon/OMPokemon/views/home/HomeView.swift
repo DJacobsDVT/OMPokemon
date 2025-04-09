@@ -12,13 +12,13 @@ import Factory
 
 struct HomeView: View {
 
-    @StateObject private var viewModel: HomeViewModel = HomeViewModel()
+    @StateObject private var viewModel = HomeViewModel()
     @State private var searchTerm = ""
     var pokemons: [NamedItem] {
-        if !searchTerm.isEmpty {
-            viewModel.pokemons.filter { $0.name.lowercased().contains(searchTerm.lowercased()) }
-        } else {
+        if searchTerm.isEmpty {
             viewModel.pokemons
+        } else {
+            viewModel.pokemons.filter { $0.name.caseInsenstiveContains(searchTerm) }
         }
     }
 
@@ -29,7 +29,7 @@ struct HomeView: View {
                 LoadingView()
             case .error(let error):
                 GenericErrorView(errorMessage: error)
-            case .idle:
+            case .loaded:
                 List {
                     ForEach(pokemons, id: \.id) { pokemon in
                         NavigationLink {
@@ -49,22 +49,18 @@ struct HomeView: View {
                         }
                     }
                 }
-                .searchable(text: $searchTerm, prompt: String(localized: "whos_that_pokemon"))
+                .searchable(text: $searchTerm, prompt: "whos_that_pokemon")
+            default:
+                EmptyView()
             }
         }
-        .navigationTitle(title)
+        .navigationTitle("pokedex")
         .onAppear(perform: {
             searchTerm = ""
             Task {
                 await viewModel.loadPokemon()
             }
         })
-    }
-}
-
-extension HomeView {
-    var title: String {
-        String(localized: "pokedex")
     }
 }
 

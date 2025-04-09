@@ -20,7 +20,7 @@ struct GenericErrorView: View {
                 .frame(width: 100, height: 100)
                 .foregroundColor(.red)
                 .padding([.bottom])
-            Text(String(localized: "generic_error_title"))
+            Text("generic_error_title")
                 .font(.system(.headline, design: .default))
             Text(errorMessage)
             Spacer()
@@ -30,5 +30,5 @@ struct GenericErrorView: View {
 }
 
 #Preview {
-    GenericErrorView(errorMessage: String(localized: "something_went_wrong"))
+    GenericErrorView(errorMessage: "something_went_wrong")
 }

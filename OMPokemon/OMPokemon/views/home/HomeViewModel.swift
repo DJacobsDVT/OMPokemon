@@ -22,14 +22,14 @@ final class HomeViewModel: BaseObservable {
         state = .loading
         do {
             guard let result = try await pokemonService.fetchPokemonList(limit: 100) else {
-                state = ViewState.error(String(localized: "something_went_wrong"))
+                state = ViewState.error("something_went_wrong")
                 return
             }
             self.pokemons = result
-            state = .idle
+            state = .loaded
         } catch {
             Logger.app.error("Failed to load pokemon detail: \(error)")
-            state = ViewState.error(String(localized: "something_went_wrong"))
+            state = ViewState.error("something_went_wrong")
         }
     }
 }

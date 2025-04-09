@@ -56,7 +56,7 @@
         }
       }
     },
-    "height" : {
+    "height_title" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
@@ -177,7 +177,7 @@
         }
       }
     },
-    "weight" : {
+    "weight_title" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {

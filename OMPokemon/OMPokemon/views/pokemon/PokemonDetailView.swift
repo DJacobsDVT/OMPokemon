@@ -24,15 +24,17 @@ struct PokemonDetailView: View {
                 LoadingView()
             case .error(let error):
                 GenericErrorView(errorMessage: error)
-            case .idle:
+            case .loaded:
                 if let dto = viewModel.pokemonDTO {
                     List {
                         PokemonDetailHeaderView(title: dto.name, imageUrl: dto.spriteURL)
                         PokemonDetailBodyView(sections: dto.sections)
                     }
                 } else {
-                    GenericErrorView(errorMessage: String(localized: "something_went_wrong"))
+                    GenericErrorView(errorMessage: "something_went_wrong")
                 }
+            default:
+                EmptyView()
             }
         }
         .onAppear(perform: {

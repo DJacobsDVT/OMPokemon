@@ -8,6 +8,7 @@
 enum ViewState: Equatable, Sendable {
     case loading
     case error(String)
+    case loaded
     case idle
 }
 

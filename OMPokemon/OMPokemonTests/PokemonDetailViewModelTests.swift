@@ -28,7 +28,7 @@ class PokemonDetailViewModelTests {
         // Assert
         #expect(systemUnderTest.pokemonDTO != nil)
         #expect(systemUnderTest.pokemonDTO?.name == "Pikachu")
-        #expect(await systemUnderTest.state == ViewState.idle)
+        #expect(await systemUnderTest.state == ViewState.loaded)
         #expect(mockService.fetchPokemonCalled)
     }
 
@@ -45,7 +45,7 @@ class PokemonDetailViewModelTests {
 
         // Assert
         #expect(systemUnderTest.pokemonDTO == nil)
-        #expect(await systemUnderTest.state == ViewState.error(String(localized: "something_went_wrong")))
+        #expect(await systemUnderTest.state == ViewState.error("something_went_wrong"))
         #expect(mockService.fetchPokemonCalled)
     }
 
@@ -62,8 +62,12 @@ class PokemonDetailViewModelTests {
 
         // Assert
         #expect(systemUnderTest.pokemonDTO == nil)
-        #expect(await systemUnderTest.state == ViewState.error(String(localized: "something_went_wrong")))
+        #expect(await systemUnderTest.state == ViewState.error("something_went_wrong"))
         #expect(mockService.fetchPokemonCalled)
+    }
+
+    deinit {
+        Container.shared.reset()
     }
 }
 
