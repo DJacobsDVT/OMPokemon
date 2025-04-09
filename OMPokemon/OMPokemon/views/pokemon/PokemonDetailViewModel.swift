@@ -11,8 +11,8 @@ import OMModels
 import Factory
 import OSLog
 
-public final class PokemonDetailViewModel: BaseObservable {
-    @MainActor @Published var state: ViewState = .idle
+final class PokemonDetailViewModel: BaseObservable {
+    @Published var state: ViewState = .idle
     private var pokemonDetail: PokemonItem?
     private(set) var pokemonDTO: PokemonDetailDTO?
 
@@ -23,7 +23,6 @@ public final class PokemonDetailViewModel: BaseObservable {
         self.pokemon = pokemon
     }
 
-    @MainActor
     func loadPokemonDetail() async {
         state = .loading
         do {

@@ -31,7 +31,7 @@ enum Destination: Hashable {
     case home
     case viewPokemon(NamedItem)
 
-    @ViewBuilder var routeView: some View {
+    @MainActor @ViewBuilder var routeView: some View {
         switch self {
         case .landing:
             LandingView().navigationBarBackButtonHidden(true)
