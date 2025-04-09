@@ -11,6 +11,7 @@ import OMNetworking
 struct PreviewPokemonService: PokemonService {
 
     func fetchPokemonList(limit: Int) async throws -> [NamedItem]? {
+        // Ignoring limit variable as this is for preview use.
         let data = MockDataHelper.readJson(from: "pokemon_list", for: [NamedItem].self)
         return data
     }

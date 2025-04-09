@@ -39,4 +39,5 @@ Swift Package Manager For Dependency Management
 - Add xcconfig file for configuration variables
 - Add infinite scrolling using paging for HomeView
 - Split out network calls into Use Cases
-
+- Use caching mechanism in the PokemonServiceImpl to be able to load images of the pokemon for display on the HomeView
+- Fix intermittent unit test failure with callCount on mockService not updating when running entire test suite repeatedly

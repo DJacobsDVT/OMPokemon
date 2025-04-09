@@ -27,7 +27,7 @@ class HomeViewModelTests {
         await systemUnderTest.loadPokemon()
 
         // Assert
-        #expect(await systemUnderTest.state == ViewState.idle)
+        #expect(await systemUnderTest.state == ViewState.loaded)
         #expect(await !systemUnderTest.pokemons.isEmpty)
         #expect(mockService.fetchPokemonListCalled)
     }
@@ -45,7 +45,7 @@ class HomeViewModelTests {
 
         // Assert
         #expect(await systemUnderTest.pokemons.isEmpty)
-        #expect(await systemUnderTest.state == ViewState.error(String(localized: "something_went_wrong")))
+        #expect(await systemUnderTest.state == ViewState.error("something_went_wrong"))
         #expect(mockService.fetchPokemonListCalled)
     }
 
@@ -62,7 +62,7 @@ class HomeViewModelTests {
 
         // Assert
         #expect(await systemUnderTest.pokemons.isEmpty)
-        #expect(await systemUnderTest.state == ViewState.error(String(localized: "something_went_wrong")))
+        #expect(await systemUnderTest.state == ViewState.error("something_went_wrong"))
         #expect(mockService.fetchPokemonListCalled)
     }
 

@@ -32,12 +32,12 @@ struct LandingView: View {
               opacity = opacity == 0.0 ? 1.0 : 0.0
             }
             Task {
-                try await performAfterDelay()
+                try await navigateAfterDelay()
             }
         }
     }
 
-    private func performAfterDelay() async throws {
+    private func navigateAfterDelay() async throws {
         try await Task.sleep(for: .seconds(1.5))
         withAnimation {
             router.navigate(to: .home)
